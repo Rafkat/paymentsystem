@@ -1,0 +1,9 @@
+{% if latest_payments_list %}
+    <ul>
+    {% for question in latest_payments_list %}
+        <li><a href="/payments/{{ payment.id }}/">{{ payment.payment_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No payments are available.</p>
+{% endif %}
