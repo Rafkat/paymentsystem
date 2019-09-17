@@ -1,9 +1,36 @@
-{% if latest_payments_list %}
-    <ul>
-    {% for question in latest_payments_list %}
-        <li><a href="/payments/{{ payment.id }}/">{{ payment.payment_text }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No payments are available.</p>
-{% endif %}
+<table border="1" cellspacing="0">
+
+	<tr>
+		<td width="150px" align="center"> Date </td>
+		<td width="110px" align="center"> Customer </td>
+		<td width="150px" align="center"> Biller </td>
+		<td width="150px" align="center"> Account </td>
+		<td width="150px" align="center"> Amount </td>
+	</tr>
+
+	<tr>
+		<td> 
+		something
+ </td>
+		<td>  
+		something
+</td>
+		<td>  
+		{% if latest_payments_list %}
+			{% for payments in latest_payments_list %}
+				{{payment.payment_text}}
+			{% endfor %}
+		{% else %}
+			<p> No payments are available. <p>
+		{% endif %}
+ </td>
+		<td>  
+		something
+ </td>
+		<td>  
+		something
+</td>
+	</tr>
+
+	
+</table>
