@@ -2,12 +2,12 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 
-from .models import Payment, Customer, Biller, Amount
+from .models import Payment, Customer, Biller
 
 def index(request):
     latest_payments_list = Payment.objects.order_by('-pub_date')[:5]
     context = {'latest_payments_list': latest_payments_list}
-    return HttpResponse(request, 'payment/index.html', context)
+    return render(request, 'payment/index.html', context)
 
 def customers(request):
     return HttpResponse("You're looking at customer")
