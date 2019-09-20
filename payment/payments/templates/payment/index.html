@@ -1,8 +1,29 @@
-<table border="1" cellspacing="0">
+
+<p align="right"><button><a href="/payments/">Payments</a> </button>
+<button><a href="/customers/">Customers</a></button>
+<button><a href="/billers/">Billers</a></button></p>
+
+
+<p align="right"><button><a href="/newpayment/">New payment</a></button></p>
+
+<p align="left">
+<select>
+	<option> Choose customer </option>
+	<option>Ramazan</option>
+	<option>Keks</option>
+</select>
+<select>
+	<option> Choose biller </option>
+	<option> Hihi </option>
+	<option> Hoho </option>
+</select>
+</p>
+
+<table border="1" cellspacing="0" align="center">
 
 	<tr>
 		<td width="150px" align="center"> Date </td>
-		<td width="110px" align="center"> Customer </td>
+		<td width="150px" align="center"> Customer </td>
 		<td width="150px" align="center"> Biller </td>
 		<td width="150px" align="center"> Account </td>
 		<td width="150px" align="center"> Amount </td>
@@ -11,21 +32,21 @@
 {% if latest_payments_list %}
 			{% for payments in latest_payments_list %}
 	<tr>
-		<td> 
+		<td align="center">
 		{{payments.pub_date}}
  </td>
-		<td>
+		<td align="center">
 		{{payments.customer}}
 </td>
-		<td>  
+		<td align="center">
 		
-				{{payments.payment_text}}
+				{{payments.biller}}
 			
  </td>
-		<td>  
+		<td align="center">
 		{{payments.account}}
  </td>
-		<td>  
+		<td align="center">
 		{{payments.amount}}
 </td>
 	</tr>

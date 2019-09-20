@@ -1,0 +1,49 @@
+<p align="center"> Customer*
+    &nbsp; &nbsp;
+    <select>
+        <option> Choose customer </option>
+        {% if latest_customers_list %}
+            {% for customer in latest_customers_list %}
+        <option> {{customer.customer_text}} </option>
+            {% endfor %}
+        {% else %}
+        <option> No customers </option>
+        {% endif %}
+    </select>
+
+</p>
+
+<p align="center"> Biller*
+    &nbsp; &nbsp;
+    <select>
+        <option> Choose biller </option>
+        {% if latest_billers_list %}
+            {% for biller in latest_billers_list %}
+        <option> {{biller.biller_text}} </option>
+            {% endfor %}
+        {% else %}
+        <option> No billers </option>
+        {% endif %}
+    </select>
+
+</p>
+
+<p align="center"> Account
+    &nbsp; &nbsp; &nbsp;
+
+    <input type="text" size="14">
+
+</p>
+
+<p align="center"> Amount*
+    &nbsp; &nbsp;
+
+    <input type="text" size="14">
+
+</p>
+
+<p align="center">
+
+    <button> <a href="/payments/"> Pay </a> </button>
+
+</p>
