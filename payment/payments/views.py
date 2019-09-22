@@ -6,7 +6,11 @@ from .models import Payment, Customer, Biller
 
 def index(request):
     latest_payments_list = Payment.objects.order_by('-pub_date')[:10]
-    context = {'latest_payments_list': latest_payments_list}
+    latest_customers_list = Customer.objects.order_by('customer_text')
+    latest_billers_list = Biller.objects.order_by('biller_text')
+    context = {'latest_payments_list': latest_payments_list,
+               'latest_customers_list': latest_customers_list,
+               'latest_billers_list': latest_billers_list}
     return render(request, 'payment/index.html', context)
 
 def customers(request):

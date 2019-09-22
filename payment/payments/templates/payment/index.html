@@ -1,22 +1,36 @@
 
-<p align="right"><button><a href="/payments/">Payments</a> </button>
-<button><a href="/customers/">Customers</a></button>
-<button><a href="/billers/">Billers</a></button></p>
+<p align="right">
+	<button><a href="/payments/">Payments</a> </button>
+	<button><a href="/customers/">Customers</a></button>
+	<button><a href="/billers/">Billers</a></button>
+</p>
 
 
-<p align="right"><button><a href="/newpayment/">New payment</a></button></p>
+<p align="right">
+	<button><a href="/newpayment/">New payment</a></button>
+</p>
 
 <p align="left">
-<select>
-	<option> Choose customer </option>
-	<option>Ramazan</option>
-	<option>Keks</option>
-</select>
-<select>
-	<option> Choose biller </option>
-	<option> Hihi </option>
-	<option> Hoho </option>
-</select>
+  	<select>
+        <option> Choose customer </option>
+        {% if latest_customers_list %}
+            {% for customer in latest_customers_list %}
+        <option> {{customer.customer_text}} </option>
+            {% endfor %}
+        {% else %}
+        <option> No customers </option>
+        {% endif %}
+  	</select>
+	<select>
+        <option> Choose biller </option>
+        {% if latest_billers_list %}
+            {% for biller in latest_billers_list %}
+        <option> {{biller.biller_text}} </option>
+            {% endfor %}
+        {% else %}
+        <option> No billers </option>
+        {% endif %}
+	</select>
 </p>
 
 <table border="1" cellspacing="0" align="center">

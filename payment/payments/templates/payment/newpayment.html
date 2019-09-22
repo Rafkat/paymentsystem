@@ -1,3 +1,7 @@
+<form action="/payments/" method="post">
+
+    {% csrf_token %}
+
 <p align="center"> Customer*
     &nbsp; &nbsp;
     <select>
@@ -44,6 +48,18 @@
 
 <p align="center">
 
-    <button> <a href="/payments/"> Pay </a> </button>
+    <input type="submit" id="newpayment{{forloop.counter}}" value="Pay">
+    <label for="newpayment{{forloop.counter}}">Pay</label>
 
 </p>
+
+</form>
+
+
+
+
+
+
+
+
+
