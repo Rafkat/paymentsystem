@@ -1,57 +1,57 @@
-<form action="/payments/" method="post">
+<form action="/savepayment/" method="post">
 
     {% csrf_token %}
 
-<p align="center"> Customer*
-    &nbsp; &nbsp;
-    <select>
-        <option> Choose customer </option>
-        {% if latest_customers_list %}
-            {% for customer in latest_customers_list %}
-        <option> {{customer.customer_text}} </option>
-            {% endfor %}
-        {% else %}
-        <option> No customers </option>
-        {% endif %}
-    </select>
+    <p align="center"> Customer*
+        &nbsp; &nbsp;
+        <select name="customer_id">
+            <option> Choose customer</option>
+            {% if latest_customers_list %}
+                {% for customer in latest_customers_list %}
+                    <option value="{{ customer.id }}"> {{ customer.customer_text }} </option>
+                {% endfor %}
+            {% else %}
+                <option> No customers</option>
+            {% endif %}
+        </select>
 
-</p>
+    </p>
 
-<p align="center"> Biller*
-    &nbsp; &nbsp;
-    <select>
-        <option> Choose biller </option>
-        {% if latest_billers_list %}
-            {% for biller in latest_billers_list %}
-        <option> {{biller.biller_text}} </option>
-            {% endfor %}
-        {% else %}
-        <option> No billers </option>
-        {% endif %}
-    </select>
+    <p align="center"> Biller*
+        &nbsp; &nbsp;
+        <select name="biller_id">
+            <option> Choose biller</option>
+            {% if latest_billers_list %}
+                {% for biller in latest_billers_list %}
+                    <option value="{{ biller.id }}"> {{ biller.biller_text }} </option>
+                {% endfor %}
+            {% else %}
+                <option> No billers</option>
+            {% endif %}
+        </select>
 
-</p>
+    </p>
 
-<p align="center"> Account
-    &nbsp; &nbsp; &nbsp;
+    <p align="center"> Account
+        &nbsp; &nbsp; &nbsp;
 
-    <input type="text" size="14">
+        <input type="text" name="account" size="14">
 
-</p>
+    </p>
 
-<p align="center"> Amount*
-    &nbsp; &nbsp;
+    <p align="center"> Amount*
+        &nbsp; &nbsp;
 
-    <input type="text" size="14">
+        <input type="text" name="amount" size="14">
 
-</p>
+    </p>
 
-<p align="center">
+    <p align="center">
 
-    <input type="submit" id="newpayment{{forloop.counter}}" value="Pay">
-    <label for="newpayment{{forloop.counter}}">Pay</label>
+        <input type="submit" value="Pay">
 
-</p>
+
+    </p>
 
 </form>
 

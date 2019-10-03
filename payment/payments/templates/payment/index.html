@@ -1,72 +1,68 @@
-
 <p align="right">
-	<button><a href="/payments/">Payments</a> </button>
-	<button><a href="/customers/">Customers</a></button>
-	<button><a href="/billers/">Billers</a></button>
+    <button><a href="/payments/">Payments</a></button>
+    <button><a href="/customers/">Customers</a></button>
+    <button><a href="/billers/">Billers</a></button>
 </p>
 
 
 <p align="right">
-	<button><a href="/newpayment/">New payment</a></button>
+    <button><a href="/newpayment/">New payment</a></button>
 </p>
 
+<form action="/payments/" method="get">
 <p align="left">
-  	<select>
-        <option> Choose customer </option>
+    <select name="customer_id">
+        <option disabled selected hidden>Choose customer</option>
         {% if latest_customers_list %}
             {% for customer in latest_customers_list %}
-        <option> {{customer.customer_text}} </option>
+                <option value="{{ customer.id }}"> {{ customer.customer_text }} </option>
             {% endfor %}
-        {% else %}
-        <option> No customers </option>
         {% endif %}
-  	</select>
-	<select>
-        <option> Choose biller </option>
+    </select>
+    <select name="biller_id">
+        <option disabled selected hidden> Choose biller</option>
         {% if latest_billers_list %}
             {% for biller in latest_billers_list %}
-        <option> {{biller.biller_text}} </option>
+                <option value="{{ biller.id }}"> {{ biller.biller_text }} </option>
             {% endfor %}
-        {% else %}
-        <option> No billers </option>
         {% endif %}
-	</select>
+    </select>
+<input type="submit" value="Filter">
 </p>
+</form>
 
 <table border="1" cellspacing="0" align="center">
 
-	<tr>
-		<td width="150px" align="center"> Date </td>
-		<td width="150px" align="center"> Customer </td>
-		<td width="150px" align="center"> Biller </td>
-		<td width="150px" align="center"> Account </td>
-		<td width="150px" align="center"> Amount </td>
-	</tr>
+    <tr>
+        <td width="150px" align="center"> Date</td>
+        <td width="150px" align="center"> Customer</td>
+        <td width="150px" align="center"> Biller</td>
+        <td width="150px" align="center"> Account</td>
+        <td width="150px" align="center"> Amount</td>
+    </tr>
 
-{% if latest_payments_list %}
-			{% for payments in latest_payments_list %}
-	<tr>
-		<td align="center">
-		{{payments.pub_date}}
- </td>
-		<td align="center">
-		{{payments.customer}}
-</td>
-		<td align="center">
-		
-				{{payments.biller}}
-			
- </td>
-		<td align="center">
-		{{payments.account}}
- </td>
-		<td align="center">
-		{{payments.amount}}
-</td>
-	</tr>
-{% endfor %}
-		{% else %}
-			<p> No payments are available. <p>
-		{% endif %}
-	
+    {% if latest_payments_list %}
+        {% for payments in latest_payments_list %}
+            <tr>
+                <td align="center">
+                    {{ payments.pub_date }}
+                </td>
+                <td align="center">
+                    {{ payments.customer }}
+                </td>
+                <td align="center">
+
+                    {{ payments.biller }}
+
+                </td>
+                <td align="center">
+                    {{ payments.account }}
+                </td>
+                <td align="center">
+                    {{ payments.amount }}
+                </td>
+            </tr>
+        {% endfor %}
+    {% endif %}
+
 </table>
