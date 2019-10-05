@@ -1,0 +1,21 @@
+<form action="/savecustomer/" method="post">
+
+    {% csrf_token %}
+
+    <p align="center"> New customer*:
+        &nbsp; &nbsp; &nbsp;
+
+        <input type="text" name="newcustomer" size="14" value="{{ customer.customer_text }}">
+
+    </p>
+
+    <p align="center">
+
+        <input type="submit" value="Save">
+
+    </p>
+
+
+
+
+</form>

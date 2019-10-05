@@ -41,25 +41,29 @@ def index(request):
 # def billers(request):
 #     latest_billers_list = Biller.objects.order_by('biller_text')
 #     context = {'latest_billers_list': latest_billers_list}
-# return render(request, 'payment/billers.html', context)
+#     return render(request, 'payment/billers.html', context)
 
 
-class billers(generic.ListView):
+class Billers(generic.ListView):
     template_name = 'payment/billers.html'
     context_object_name = 'latest_billers_list'
-    model = Payment
-
-    def get_queryset(self):
-        return Biller.objects.order_by('biller_text')
+    model = Biller
 
 
-class customers(generic.ListView):
+#
+#     # def get_queryset(self):
+#     #     return Biller.objects.order_by('biller_text')
+
+
+class Customers(generic.ListView):
     template_name = 'payment/customers.html'
     context_object_name = 'latest_customers_list'
-    model = Payment
+    model = Customer
 
-    def get_queryset(self):
-        return Customer.objects.order_by('customer_text')
+
+#
+#     # def get_queryset(self):
+#     #     return Customer.objects.order_by('customer_text')
 
 
 def new_payment(request):
@@ -80,6 +84,34 @@ def save_payment(request):
     biller = Biller.objects.get(pk=biller_id)
     payment = Payment(customer=customer, biller=biller, account=account, amount=amount)
     payment.save()
+    return redirect('index')
+
+
+def new_customer(request):
+    template_name = "payment/newcustomer.html"
+    return render(request, template_name)
+
+
+def new_biller(request):
+    template_name = "payment/newbiller.html"
+    return render(request, template_name)
+
+
+# def save_customer(request):
+#     customer_details = request.body.decode('utf-8').split('&')
+#     customer_name = customer_details[1].split('=')[1]
+#     Customer.objects.create_customer(customer_name)
+#     return redirect('index')
+
+class save_customer(generic.CreateView):
+    model = Customer
+    fields = ['newcustomer']
+
+
+def save_biller(request):
+    biller_details = request.body.decode('utf-8').split('&')
+    biller_name = biller_details[1].split('=')[1]
+    Biller.objects.create_biller(biller_name)
     return redirect('index')
 
 # Create your views here.
