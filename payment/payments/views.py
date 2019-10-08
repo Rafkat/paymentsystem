@@ -1,19 +1,22 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from django.template import loader
-import json
+
+from django.urls import reverse_lazy
 from django.views import generic
 
+from .forms import Customers, Billers
 from .models import Payment, Customer, Biller
 
 
 def index(request):
     latest_payments_list = Payment.objects.order_by('-pub_date')
-    latest_customers_list = Customer.objects.order_by('customer_text')
-    latest_billers_list = Biller.objects.order_by('biller_text')
+    # latest_customers_list = Customer.objects.order_by('customer_text')
+    # latest_billers_list = Biller.objects.order_by('biller_text')
     context = {'latest_payments_list': latest_payments_list}
-    filters = {'latest_customers_list': latest_customers_list,
-               'latest_billers_list': latest_billers_list}
+
+    customers = Customers()
+    billers = Billers()
+
+    filters = {'customers': customers, 'billers': billers}
 
     filter_details = request.GET
     customer_id = filter_details.get('customer_id')
@@ -29,7 +32,8 @@ def index(request):
         latest_payments_list = Payment.objects.filter(customer_id=customer_id,
                                                       biller_id=biller_id).order_by('-pub_date')
 
-    return render(request, template_path, {'latest_payments_list': latest_payments_list, **filters})
+    return render(request, template_path,
+                  {'latest_payments_list': latest_payments_list, **filters})
 
 
 # def customers(request):
@@ -50,20 +54,10 @@ class Billers(generic.ListView):
     model = Biller
 
 
-#
-#     # def get_queryset(self):
-#     #     return Biller.objects.order_by('biller_text')
-
-
 class Customers(generic.ListView):
     template_name = 'payment/customers.html'
     context_object_name = 'latest_customers_list'
     model = Customer
-
-
-#
-#     # def get_queryset(self):
-#     #     return Customer.objects.order_by('customer_text')
 
 
 def new_payment(request):
@@ -103,15 +97,22 @@ def new_biller(request):
 #     Customer.objects.create_customer(customer_name)
 #     return redirect('index')
 
-class save_customer(generic.CreateView):
+
+class SaveCustomer(generic.CreateView):
     model = Customer
-    fields = ['newcustomer']
+    fields = ['customer_text']
+    success_url = reverse_lazy('index')
 
 
-def save_biller(request):
-    biller_details = request.body.decode('utf-8').split('&')
-    biller_name = biller_details[1].split('=')[1]
-    Biller.objects.create_biller(biller_name)
-    return redirect('index')
+class SaveBiller(generic.CreateView):
+    model = Biller
+    fields = ['biller_text']
+    success_url = reverse_lazy('index')
+
+# def save_biller(request):
+#     biller_details = request.body.decode('utf-8').split('&')
+#     biller_name = biller_details[1].split('=')[1]
+#     Biller.objects.create_biller(biller_name)
+#     return redirect('index')
 
 # Create your views here.

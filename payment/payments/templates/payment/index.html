@@ -11,27 +11,50 @@
     <button><a href="/newbiller/">New biller</a></button>
 </p>
 
+{#<form action="/payments/" method="get">#}
+{#<p align="left">#}
+{#    <select name="customer_id">#}
+{#        <option disabled selected hidden>Choose customer</option>#}
+{#        {% if latest_customers_list %}#}
+{#            {% for customer in latest_customers_list %}#}
+{#                <option value="{{ customer.id }}"> {{ customer.customer_text }} </option>#}
+{#            {% endfor %}#}
+{#        {% endif %}#}
+{#    </select>#}
+{#    <select name="biller_id">#}
+{#        <option disabled selected hidden> Choose biller</option>#}
+{#        {% if latest_billers_list %}#}
+{#            {% for biller in latest_billers_list %}#}
+{#                <option value="{{ biller.id }}"> {{ biller.biller_text }} </option>#}
+{#            {% endfor %}#}
+{#        {% endif %}#}
+{#    </select>#}
+{#<input type="submit" value="Filter">#}
+{#</p>#}
+{#</form>#}
+
+
+{{ customers.as_p }}
+
 <form action="/payments/" method="get">
 <p align="left">
     <select name="customer_id">
         <option disabled selected hidden>Choose customer</option>
-        {% if latest_customers_list %}
-            {% for customer in latest_customers_list %}
-                <option value="{{ customer.id }}"> {{ customer.customer_text }} </option>
-            {% endfor %}
-        {% endif %}
+
     </select>
     <select name="biller_id">
         <option disabled selected hidden> Choose biller</option>
-        {% if latest_billers_list %}
-            {% for biller in latest_billers_list %}
-                <option value="{{ biller.id }}"> {{ biller.biller_text }} </option>
-            {% endfor %}
-        {% endif %}
     </select>
-<input type="submit" value="Filter">
+
+
+    <input type="submit" value="Filter">
 </p>
 </form>
+{{ billers.as_p }}
+
+
+
+
 
 <table border="1" cellspacing="0" align="center">
 
