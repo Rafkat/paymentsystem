@@ -9,13 +9,9 @@ from .models import Payment, Customer, Biller
 
 def index(request):
     latest_payments_list = Payment.objects.order_by('-pub_date')
-    # latest_customers_list = Customer.objects.order_by('customer_text')
-    # latest_billers_list = Biller.objects.order_by('biller_text')
     context = {'latest_payments_list': latest_payments_list}
-
     customers = CustomersForm()
     billers = BillersForm()
-
     filters = {'customers': customers, 'billers': billers}
 
     filter_details = request.GET
@@ -24,10 +20,6 @@ def index(request):
     template_path = 'payment/index.html'
     if customer_text is None and biller_text is None:
         return render(request, template_path, {**context, **filters})
-    # elif customer_text is None and biller_text is not None:
-    #     latest_payments_list = Payment.objects.filter(biller=biller_text).order_by('-pub_date')
-    # elif biller_text is None and customer_text is not None:
-    #     latest_payments_list = Payment.objects.filter(customer=customer_text).order_by('-pub_date')
     else:
         latest_payments_list = Payment.objects.filter(customer__customer_text=customer_text,
                                                       biller__biller_text=biller_text).order_by('-pub_date')
@@ -96,7 +88,6 @@ def new_biller(request):
 #     customer_name = customer_details[1].split('=')[1]
 #     Customer.objects.create_customer(customer_name)
 #     return redirect('index')
-
 
 class SaveCustomer(generic.CreateView):
     model = Customer
