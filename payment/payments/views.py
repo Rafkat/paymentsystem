@@ -18,8 +18,12 @@ def index(request):
     customer_text = filter_details.get('Choose_customer')
     biller_text = filter_details.get('Choose_biller')
     template_path = 'payment/index.html'
-    if customer_text is None and biller_text is None:
+    if customer_text == 'None' and biller_text == 'None':
         return render(request, template_path, {**context, **filters})
+    elif customer_text == 'None' and biller_text != 'None':
+        latest_payments_list = Payment.objects.filter(biller__biller_text=biller_text).order_by('-pub_date')
+    elif customer_text != 'None' and biller_text == 'None':
+        latest_payments_list = Payment.objects.filter(customer__customer_text=customer_text).order_by('-pub_date')
     else:
         latest_payments_list = Payment.objects.filter(customer__customer_text=customer_text,
                                                       biller__biller_text=biller_text).order_by('-pub_date')
@@ -41,15 +45,15 @@ def index(request):
 
 
 class BillersView(generic.ListView):
+    model = Biller
     template_name = 'payment/billers.html'
     context_object_name = 'latest_billers_list'
-    model = Biller
 
 
 class CustomersView(generic.ListView):
+    model = Customer
     template_name = 'payment/customers.html'
     context_object_name = 'latest_customers_list'
-    model = Customer
 
 
 def new_payment(request):
