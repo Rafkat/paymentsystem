@@ -5,9 +5,9 @@ from . import views
 urlpatterns = [
     path('payments/', views.index, name='index'),
     # path('customers/', views.customers, name='customers'),
-    path('customers/', views.Customers.as_view(), name='customers'),
+    path('customers/', views.CustomersView.as_view(), name='customers'),
     # path('billers/', views.billers, name='billers'),
-    path('billers/', views.Billers.as_view(), name='billers'),
+    path('billers/', views.BillersView.as_view(), name='billers'),
     path('newpayment/', views.new_payment, name='new_payment'),
     path('savepayment/', views.save_payment, name='save_payment'),
     path('newbiller/', views.new_biller, name='newbiller'),

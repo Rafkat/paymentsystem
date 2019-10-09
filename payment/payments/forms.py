@@ -2,12 +2,11 @@ from django import forms
 from .models import Customer, Biller
 
 
-class Customers(forms.Form):
-    customer = str(Customer.objects.order_by('customer_text'))
-    latest_customers_list = forms.Select(choices=[(customer, str(Customer.objects.order_by('customer_text')))])
+class CustomersForm(forms.Form):
+    customers_list = Customer.objects.all()
+    Choose_customer = forms.ChoiceField(choices=[(customer, customer) for customer in customers_list])
 
 
-
-class Billers(forms.Form):
-    biller = str(Biller.objects.order_by('biller_text'))
-    latest_biller_list = forms.ChoiceField(choices=[(biller, Biller.objects.order_by('biller_text'))])
+class BillersForm(forms.Form):
+    billers_list = Biller.objects.all()
+    Choose_biller = forms.ChoiceField(choices=[(biller, biller) for biller in billers_list])
