@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 
-from .forms import CustomersForm, BillersForm
+from .forms import CustomersForm, BillersForm, NewCustomerForm
 from .models import Payment, Customer, Biller
 
 
@@ -15,10 +15,10 @@ def index(request):
     filters = {'customers': customers, 'billers': billers}
 
     filter_details = request.GET
-    customer_text = filter_details.get('Choose_customer')
-    biller_text = filter_details.get('Choose_biller')
+    customer_text = filter_details.get('choose_customer')
+    biller_text = filter_details.get('choose_biller')
     template_path = 'payment/index.html'
-    if customer_text == 'None' and biller_text == 'None':
+    if customer_text == 'None' and biller_text == 'None' or customer_text is None and biller_text is None:
         return render(request, template_path, {**context, **filters})
     elif customer_text == 'None' and biller_text != 'None':
         latest_payments_list = Payment.objects.filter(biller__biller_text=biller_text).order_by('-pub_date')
@@ -77,25 +77,27 @@ def save_payment(request):
     return redirect('index')
 
 
-def new_customer(request):
-    template_name = "payment/newcustomer.html"
-    return render(request, template_name)
-
-
 def new_biller(request):
     template_name = "payment/newbiller.html"
     return render(request, template_name)
 
+    # def save_customer(request):
+    #     customer_details = request.body.decode('utf-8').split('&')
+    #     customer_name = customer_details[1].split('=')[1]
+    #     Customer.objects.create_customer(customer_name)
+    #     return redirect('index')
 
-# def save_customer(request):
-#     customer_details = request.body.decode('utf-8').split('&')
-#     customer_name = customer_details[1].split('=')[1]
-#     Customer.objects.create_customer(customer_name)
-#     return redirect('index')
+
+def new_customer(request):
+    add_customer = NewCustomerForm()
+    template_name = "payment/newcustomer.html"
+    return render(request, template_name, {'add_customer': add_customer})
+
 
 class SaveCustomer(generic.CreateView):
     model = Customer
-    fields = ['customer_text']
+    form_class = NewCustomerForm
+    # fields = ['customer_text']
     success_url = reverse_lazy('index')
 
 

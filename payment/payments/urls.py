@@ -12,6 +12,7 @@ urlpatterns = [
     path('savepayment/', views.save_payment, name='save_payment'),
     path('newbiller/', views.new_biller, name='newbiller'),
     path('savecustomer/', views.SaveCustomer.as_view(), name='save_customer'),
-    path('newcustomer/', views.new_customer, name='newcustomer'),
+    path('newcustomer/', views.SaveCustomer.as_view(), name='newcustomer'),
+    # path('newcustomer/', views.new_customer, name='newcustomer'),
     path('savebiller/', views.SaveBiller.as_view(), name='save_biller'),
 ]
