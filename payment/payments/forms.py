@@ -20,4 +20,14 @@ class NewCustomerForm(forms.Form):
     customer_text = forms.CharField(max_length=100, label='New customer*:')
 
 
+class NewBillerForm(forms.Form):
+    biller_text = forms.CharField(max_length=100, label='New biller*:')
 
+
+class NewPaymentForm(forms.Form):
+    customers = Customer.objects.order_by('customer_text').all()
+    billers = Biller.objects.order_by('biller_text').all()
+    account_text = forms.CharField(max_length=100, label='Account:')
+    amount_text = forms.CharField(max_length=100, label='Amount*:')
+    choose_customer = forms.ChoiceField(choices=[(customer, customer) for customer in customers])
+    choose_biller = forms.ChoiceField(choices=[(biller, biller) for biller in billers])

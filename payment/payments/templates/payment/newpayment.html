@@ -4,7 +4,7 @@
 
     <p align="center"> Customer*:
         &nbsp; &nbsp;
-        <select name="customer_id">
+        <select name="customer">
             <option> Choose customer</option>
             {% if latest_customers_list %}
                 {% for customer in latest_customers_list %}
@@ -19,7 +19,7 @@
 
     <p align="center"> Biller*:
         &nbsp; &nbsp;
-        <select name="biller_id">
+        <select name="biller">
             <option> Choose biller</option>
             {% if latest_billers_list %}
                 {% for biller in latest_billers_list %}

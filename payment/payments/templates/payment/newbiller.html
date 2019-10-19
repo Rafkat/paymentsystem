@@ -2,15 +2,15 @@
 
     {% csrf_token %}
 
-    <p align="center"> New biller*:
-        &nbsp; &nbsp; &nbsp;
-
-        <input type="text" name="biller_text" size="14" value="{{ biller.biller_text }}">
-
-    </p>
+{#    <p align="center"> New biller*:#}
+{#        &nbsp; &nbsp; &nbsp;#}
+{##}
+{#        <input type="text" name="biller_text" size="14" value="{{ biller.biller_text }}">#}
+{##}
+{#    </p>#}
 
     <p align="center">
-
+        {{ form }}
         <input type="submit" value="Save">
 
     </p>

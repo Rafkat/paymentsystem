@@ -55,7 +55,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.scratch">
+  <component name="RunManager" selected="Django server.Unnamed">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="payment" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -183,7 +183,11 @@
       <workItem from="1570602211046" duration="5405000" />
       <workItem from="1570614278414" duration="2475000" />
       <workItem from="1570714859604" duration="5239000" />
-      <workItem from="1570774710419" duration="3121000" />
+      <workItem from="1570774710419" duration="3642000" />
+      <workItem from="1570905237335" duration="6800000" />
+      <workItem from="1571167528693" duration="1821000" />
+      <workItem from="1571293872215" duration="8988000" />
+      <workItem from="1571483463319" duration="11762000" />
     </task>
     <servers />
   </component>
@@ -192,28 +196,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/../Envs/myproject/Lib/site-packages/django/views/generic/edit.py</url>
-          <line>56</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/../Envs/myproject/Lib/site-packages/django/views/generic/edit.py</url>
-          <line>124</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/../Envs/myproject/Lib/site-packages/django/views/generic/edit.py</url>
-          <line>32</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/../Envs/myproject/Lib/site-packages/django/views/generic/edit.py</url>
-          <line>41</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
@@ -231,6 +213,6 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/payment$views.coverage" NAME="views Coverage Results" MODIFIED="1570197312278" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/payments" />
     <SUITE FILE_PATH="coverage/payment$main.coverage" NAME="main Coverage Results" MODIFIED="1570101763679" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/payments" />
-    <SUITE FILE_PATH="coverage/payment$scratch.coverage" NAME="scratch Coverage Results" MODIFIED="1570777524967" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
+    <SUITE FILE_PATH="coverage/payment$scratch.coverage" NAME="scratch Coverage Results" MODIFIED="1570905420515" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
   </component>
 </project>
