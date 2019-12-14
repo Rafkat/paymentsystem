@@ -16,9 +16,6 @@ class BillersForm(forms.Form):
     choose_biller = forms.ChoiceField(choices=none_list + billers_list, label='Choose biller*:')
 
 
-class NewCustomerForm(forms.Form):
-    customer_text = forms.CharField(max_length=100, label='New customer*:')
-
 
 class NewBillerForm(forms.Form):
     biller_text = forms.CharField(max_length=100, label='New biller*:')
